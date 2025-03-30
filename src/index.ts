@@ -77,7 +77,7 @@ export async function doAttendanceForAccount(token: string, options: Options) {
         })
         if (data) {
           if (data.code === 0 && data.message === 'OK') {
-            const msg = `${(Number(character.channelMasterId) - 1) ? 'B 服' : '官服'}角色 ${successAttendance + 1} 签到成功${`, 获得了${data.data.awards.map(a => `「${a.resource.name}」${a.count}个`).join(',')}`}`
+            const msg = `${(Number(character.channelMasterId) - 1) ? 'B 服' : '官服'}角色 ${successAttendance + 1} 签到成功了喵${`, 获得了海猫上贡的${data.data.awards.map(a => `「${a.resource.name}」${a.count}个`).join(',')}`}`
             combineMessage(msg)
             successAttendance++
             break // 签到成功，跳出重试循环
@@ -89,13 +89,13 @@ export async function doAttendanceForAccount(token: string, options: Options) {
           }
         }
         else {
-          combineMessage(`${(Number(character.channelMasterId) - 1) ? 'B 服' : '官服'}角色 ${successAttendance + 1} 今天已经签到过了`)
+          combineMessage(`${(Number(character.channelMasterId) - 1) ? 'B 服' : '官服'}角色 ${successAttendance + 1} 今天已经签到过了的说`)
           break // 已经签到过，跳出重试循环
         }
       }
       catch (error: any) {
         if (error.response && error.response.status === 403) {
-          combineMessage(`${(Number(character.channelMasterId) - 1) ? 'B 服' : '官服'}角色 ${successAttendance + 1} 今天已经签到过了`)
+          combineMessage(`${(Number(character.channelMasterId) - 1) ? 'B 服' : '官服'}角色 ${successAttendance + 1} 今天已经签到过了的说`)
           break // 已经签到过，跳出重试循环
         }
         else {
